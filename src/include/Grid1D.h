@@ -1,5 +1,6 @@
 #ifndef GRID1D_H
 #define GRID1D_H
+#include <memory>
 #include "Params.h"
 #include "GridParams.h"
 #include "FitResult.h"
@@ -12,7 +13,8 @@ class Grid1D
         const arma::mat * X;
         const arma::vec * y;
         unsigned int p;
-        std::vector<FitResult*> G;
+        //std::vector<FitResult*> G;
+        std::vector<std::unique_ptr<FitResult>> G;
         arma::vec Lambdas;
         bool LambdaU;
         unsigned int NnzStopNum;
@@ -28,7 +30,8 @@ class Grid1D
 
     public:
         Grid1D(const arma::mat& Xi, const arma::vec& yi, const GridParams& PG);
-        std::vector<FitResult*> Fit();
+        ~Grid1D();
+        std::vector<std::unique_ptr<FitResult>> Fit();
 };
 
 #endif
