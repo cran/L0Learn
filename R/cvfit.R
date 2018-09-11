@@ -31,12 +31,39 @@
 #' @export
 L0Learn.cvfit <- function(x,y, loss="SquaredError", penalty="L0", algorithm="CD", maxSuppSize=100, nLambda=100, nGamma=10,
 						gammaMax=10, gammaMin=0.0001, partialSort = TRUE, maxIters=200,
-						tol=1e-6, activeSet=TRUE, activeSetNum=3, maxSwaps=100, scaleDownFactor=0.8, screenSize=1000, autoLambda = TRUE, lambdaGrid = list(0), nFolds=10, seed=1, excludeFirstK=0)
+						tol=1e-6, activeSet=TRUE, activeSetNum=3, maxSwaps=100, scaleDownFactor=0.8, screenSize=1000, autoLambda = TRUE, lambdaGrid = list(0), nFolds=10, seed=1, excludeFirstK=0, intercept=TRUE)
 {
 	set.seed(seed)
-	# The C++ function uses LambdaU = 1 for user-specified grid. In R, we use AutoLambda0 = 0 for user-specified grid (thus the negation when passing the paramter to the function below)
-	M <- .Call('_L0Learn_L0LearnCV', PACKAGE = 'L0Learn', x, y, loss, penalty, algorithm, maxSuppSize, nLambda, nGamma, gammaMax, gammaMin, partialSort, maxIters, tol, activeSet, activeSetNum, maxSwaps, scaleDownFactor, screenSize, !autoLambda, lambdaGrid,nFolds,seed,excludeFirstK)
-	fit <- list(beta = M$beta, lambda=lapply(M$lambda,signif, digits=6), a0=M$a0, converged = M$Converged, suppSize= M$SuppSize, gamma=M$gamma, penalty=penalty, loss=loss)
+	# The C++ function uses LambdaU = 1 for user-specified grid. In R, we use AutoLambda0 = 0 for user-specified grid (thus the negation when passing the parameter to the function below)
+
+	M <- .Call('_L0Learn_L0LearnCV', PACKAGE = 'L0Learn', x, y, loss, penalty, algorithm, maxSuppSize, nLambda, nGamma, gammaMax, gammaMin, partialSort, maxIters, tol, activeSet, activeSetNum, maxSwaps, scaleDownFactor, screenSize, !autoLambda, lambdaGrid, nFolds, seed, excludeFirstK, intercept)
+
+	settings = list()
+	settings[[1]] = intercept # Settings only contains intercept for now. Might include additional elements later.
+	names(settings) <- c("intercept")
+
+	# Find potential support sizes exceeding maxSuppSize and remove them (this is due to
+	# the C++ core whose last solution can exceed maxSuppSize
+	for (i in 1:length(M$SuppSize)){
+			last = length(M$SuppSize[[i]])
+			if (M$SuppSize[[i]][last] > maxSuppSize){
+					if (last == 1){
+							print("Warning! Only 1 element in path with support size > maxSuppSize.")
+							print("Try increasing maxSuppSize to resolve the issue.")
+					}
+					else{
+							M$SuppSize[[i]] = M$SuppSize[[i]][-last]
+							M$Converged[[i]] = M$Converged[[i]][-last]
+							M$lambda[[i]] = M$lambda[[i]][-last]
+							M$a0[[i]] = M$a0[[i]][-last]
+							M$beta[[i]] = M$beta[[i]][,-last]
+							M$CVMeans[[i]] = M$CVMeans[[i]][-last]
+							M$CVSDs[[i]] = M$CVSDs[[i]][-last]
+					}
+			}
+	}
+
+	fit <- list(beta = M$beta, lambda=lapply(M$lambda,signif, digits=6), a0=M$a0, converged = M$Converged, suppSize= M$SuppSize, gamma=M$gamma, penalty=penalty, loss=loss, settings=settings)
 	if (is.null(colnames(x))){
 			varnames <- 1:dim(x)[2]
 	} else {
