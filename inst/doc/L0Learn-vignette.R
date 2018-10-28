@@ -52,7 +52,7 @@ coef(fit, lambda=0.0325142, gamma=0)
 ## ----output.lines=15-----------------------------------------------------
 predict(fit, newx=X, lambda=0.0325142, gamma=0)
 
-## ---- fig.height = 4, fig.width = 7, out.width="80%", dpi=300------------
+## ---- fig.height = 4.7, fig.width = 7, out.width="90%", dpi=300----------
 plot(fit, gamma=0)
 
 ## ------------------------------------------------------------------------
@@ -73,7 +73,7 @@ cvfit = L0Learn.cvfit(X, y, nFolds=5, seed=1, penalty="L0L2", nGamma=5, gammaMin
 ## ------------------------------------------------------------------------
 lapply(cvfit$cvMeans, min)
 
-## ---- fig.height = 4, fig.width = 7, out.width="80%", dpi=300------------
+## ---- fig.height = 4.7, fig.width = 7, out.width="90%", dpi=300----------
 plot(cvfit, gamma=cvfit$fit$gamma[4])
 
 ## ------------------------------------------------------------------------
@@ -88,13 +88,13 @@ coef(cvfit, lambda=optimalLambda, gamma=cvfit$fit$gamma[4])
 ## ------------------------------------------------------------------------
 fit <- L0Learn.fit(X, y, penalty="L0", maxSuppSize=20, excludeFirstK=3)
 
-## ---- fig.height = 4, fig.width = 7, out.width="80%", dpi=300------------
+## ---- fig.height = 4.7, fig.width = 7, out.width="90%", dpi=300----------
 plot(fit, gamma=0)
 
 ## ------------------------------------------------------------------------
 userLambda <- list()
 userLambda[[1]] <- c(1, 1e-1, 1e-2, 1e-3, 1e-4)
-fit <- L0Learn.fit(X, y, penalty="L0", autoLambda=FALSE, lambdaGrid=userLambda)
+fit <- L0Learn.fit(X, y, penalty="L0", autoLambda=FALSE, lambdaGrid=userLambda, maxSuppSize=1000)
 
 ## ------------------------------------------------------------------------
 print(fit)

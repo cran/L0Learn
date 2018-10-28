@@ -1,4 +1,4 @@
-b01e9639c8b22c06ff80b5dd80fb79f9 *DESCRIPTION
+6427fa1da065085ccfa5a7522d47fec2 *DESCRIPTION
 09a52467e301caff14e3416f6ba1c20f *LICENSE
 fd5bda0e373ad0da6aeb523da51f2a04 *NAMESPACE
 b05e77abf9dcb64b9b00446986d4167a *R/L0Learn.R
@@ -13,10 +13,10 @@ c9a4b038f57e0156b10116a26fd9f485 *R/predict.R
 30efa522cbb8515e47eafd81abbe86ec *build/vignette.rds
 8ae16e6cc98ab14948e7ee7302485b19 *cleanup
 1fb794f96c58b83914fc7314d25e0817 *configure
-d2374787edda4cad645155bd13ca5e0a *configure.ac
-1df8ae290021a324d3d34dc35e98924e *inst/doc/L0Learn-vignette.R
-22c28aafd3a390b0696dadb6142ecd4d *inst/doc/L0Learn-vignette.Rmd
-8b8ae16c136342a2f2066609ef6407a0 *inst/doc/L0Learn-vignette.html
+ba668853878be4f675076d090179bd6d *configure.ac
+ff31ed99e5f531fc43dd7a820cebb4a7 *inst/doc/L0Learn-vignette.R
+98c4a6497791cc51f8142029f007518e *inst/doc/L0Learn-vignette.Rmd
+db987db88ea24d5e0c418ed748f66686 *inst/doc/L0Learn-vignette.html
 07e6baa9014edcd4fa23254d6b3841de *man/GenSynthetic.Rd
 1d847d757f0c41fc2cc33b0669ce1866 *man/L0Learn-package.Rd
 7f5dff82af0445127ad0c2cdf595bcea *man/L0Learn.cvfit.Rd
@@ -34,7 +34,7 @@ d73967e30f474e6c8a98c947894c65d5 *src/CDL012LogisticSwaps.cpp
 6b2fc4ee914ab11ee978f0713c87c754 *src/CDL012SquaredHinge.cpp
 5bc43359189bc506308f666e2ebe3611 *src/CDL012SquaredHingeSwaps.cpp
 ba35674ff363a061304fd6496509d980 *src/CDL012Swaps.cpp
-8a285e256f48eb1ec183848f9459bd8b *src/CrossValidation.cpp
+d4e174ec079728c294d6dc5812708d14 *src/CrossValidation.cpp
 7ba5dd087c43cc8ba5236b316fcde255 *src/Grid.cpp
 431690cad1670ae4705c984d3d06dda3 *src/Grid1D.cpp
 ae8c4ce443c40e26253d86f45c0e0d0c *src/Grid2D.cpp
@@ -61,4 +61,4 @@ b3c84ec524f2dcc137d812643b68f7cd *src/include/MakeCD.h
 f18498319ccd5f2e33c9068ac345e718 *src/include/Model.h
 09a17449b8696084aec538f736f1ff55 *src/include/Normalize.h
 9aea747eb06a8ae68d89137397ba9c3c *src/include/Params.h
-22c28aafd3a390b0696dadb6142ecd4d *vignettes/L0Learn-vignette.Rmd
+98c4a6497791cc51f8142029f007518e *vignettes/L0Learn-vignette.Rmd
