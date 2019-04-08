@@ -1,4 +1,4 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE,warning=F------------------------------------
 knitr::opts_chunk$set(
   comment = "#>"
 )
