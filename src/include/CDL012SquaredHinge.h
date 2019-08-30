@@ -17,17 +17,24 @@ class CDL012SquaredHinge : public CD
         unsigned int Iter;
         arma::vec onemyxb;
         unsigned int NoSelectK;
+        arma::mat * Xy;
+        unsigned int ScreenSize;
+        std::vector<unsigned int> Range1p;
+        bool intercept;
 
     public:
         CDL012SquaredHinge(const arma::mat& Xi, const arma::vec& yi, const Params& P);
+        //~CDL012SquaredHinge(){}
+        //inline double Derivativei(unsigned int i);
 
-        inline double Derivativei(unsigned int i);
-
-        inline double Derivativeb();
+        //inline double Derivativeb();
 
         FitResult Fit() final;
 
         inline double Objective(arma::vec & r, arma::sp_mat & B) final;
+
+        bool CWMinCheck();
+
 
 };
 

@@ -1,7 +1,5 @@
-## ----setup, include = FALSE,warning=F------------------------------------
-knitr::opts_chunk$set(
-  comment = "#>"
-)
+## ----setup, include = FALSE----------------------------------------------
+knitr::opts_chunk$set(comment = "#>", warning=FALSE, message=FALSE)
 
 ## ----echo = FALSE--------------------------------------------------------
 # Thanks to Yihui Xie for providing this code
@@ -37,7 +35,7 @@ B = c(rep(1,10),rep(0,990))
 e = rnorm(500)
 y = X%*%B + e
 
-## ------------------------------------------------------------------------
+## ---- results="hide"-----------------------------------------------------
 library(L0Learn)
 
 ## ------------------------------------------------------------------------
@@ -86,7 +84,24 @@ optimalLambda
 coef(cvfit, lambda=optimalLambda, gamma=cvfit$fit$gamma[4])
 
 ## ------------------------------------------------------------------------
-fit <- L0Learn.fit(X, y, penalty="L0", maxSuppSize=20, excludeFirstK=3)
+set.seed(1) # fix the seed to get a reproducible result
+X = matrix(rnorm(500*1000),nrow=500,ncol=1000)
+B = c(rep(1,10),rep(0,990))
+e = rnorm(500)
+y = sign(X%*%B + e)
+
+## ----output.lines=15-----------------------------------------------------
+fit = L0Learn.fit(X,y,loss="Logistic")
+print(fit)
+
+## ----output.lines=15-----------------------------------------------------
+coef(fit, lambda=8.69435, gamma=1e-7)
+
+## ----output.lines=15-----------------------------------------------------
+predict(fit, newx=X, lambda=8.69435, gamma=1e-7)
+
+## ------------------------------------------------------------------------
+fit <- L0Learn.fit(X, y, penalty="L0", maxSuppSize=10, excludeFirstK=3)
 
 ## ---- fig.height = 4.7, fig.width = 7, out.width="90%", dpi=300----------
 plot(fit, gamma=0)

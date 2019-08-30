@@ -8,14 +8,13 @@ class CDL0 : public CD
     private:
         double thr;
         std::vector<double> * Xtr;
-        arma::rowvec * ytX; // new imp
-        std::map<unsigned int, arma::rowvec> * D; //new imp
         unsigned int Iter;
         unsigned int ScreenSize;
         std::vector<unsigned int> Range1p;
         unsigned int NoSelectK;
     public:
         CDL0(const arma::mat& Xi, const arma::vec& yi, const Params& P);
+        //~CDL0(){}
 
         FitResult Fit() final;
 

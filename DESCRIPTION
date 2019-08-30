@@ -1,8 +1,8 @@
 Package: L0Learn
 Type: Package
 Title: Fast Algorithms for Best Subset Selection
-Version: 1.1.0
-Date: 2019-04-07
+Version: 1.2.0
+Date: 2019-08-30
 Author: Hussein Hazimeh, Rahul Mazumder
 Maintainer: Hussein Hazimeh <hazimeh@mit.edu>
 Description: Highly optimized toolkit for approximately solving L0-regularized learning problems (aka best subset selection).
@@ -14,10 +14,10 @@ License: MIT + file LICENSE
 Depends: R (>= 3.3.0)
 Imports: Rcpp (>= 0.12.13), Matrix, methods, ggplot2, reshape2
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2019-04-08 19:54:44 UTC; hh
+Packaged: 2019-08-30 14:29:43 UTC; hh
 Repository: CRAN
-Date/Publication: 2019-04-08 20:32:58 UTC
+Date/Publication: 2019-08-30 15:00:02 UTC
