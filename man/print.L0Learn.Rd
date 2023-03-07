@@ -14,6 +14,9 @@
 
 \item{...}{ignore}
 }
+\value{
+Prints a summary of the models to the console.
+}
 \description{
 Prints a summary of L0Learn.fit
 }

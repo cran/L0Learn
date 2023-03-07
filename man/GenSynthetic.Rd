@@ -4,7 +4,7 @@
 \alias{GenSynthetic}
 \title{Generate Synthetic Data}
 \usage{
-GenSynthetic(n, p, k, seed, rho = 0, b0 = 0, error_ratio = 1)
+GenSynthetic(n, p, k, seed, rho = 0, b0 = 0, snr = 1)
 }
 \arguments{
 \item{n}{Number of samples}
@@ -19,7 +19,8 @@ GenSynthetic(n, p, k, seed, rho = 0, b0 = 0, error_ratio = 1)
 
 \item{b0}{intercept value to translate y by.}
 
-\item{error_ratio}{multiplier for the magnitude of the error term 'e'.}
+\item{snr}{desired Signal-to-Noise ratio. This sets the magnitude of the error term 'e'. 
+SNR is defined as  SNR = Var(XB)/Var(e)}
 }
 \value{
 A list containing:
@@ -35,7 +36,7 @@ Generates a synthetic dataset as follows: 1) Sample every element in data matrix
 vector e from N(0,1). 4) Set y = XB + b0 + e.
 }
 \examples{
-data <- GenSynthetic(n=500,p=1000,k=10,seed=1)
+data <- GenSynthetic(n=100,p=20,k=10,seed=1)
 X = data$X
 y = data$y
 }

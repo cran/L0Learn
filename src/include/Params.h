@@ -15,26 +15,25 @@ struct Params {
     double atol = 1e-12;
     char Init = 'z'; // 'z' => zeros
     std::size_t RandomStartSize = 10;
-    beta_vector * InitialSol;
+    beta_vector * InitialSol = 0;
     double b0 = 0; // intercept
     char CyclingOrder = 'c';
     std::vector<std::size_t> Uorder;
     bool ActiveSet = true;
     std::size_t ActiveSetNum = 6;
     std::size_t MaxNumSwaps = 200; // Used by CDSwaps
-    std::vector<double> * Xtr;
-    arma::rowvec * ytX;
-    std::map<std::size_t, arma::rowvec> * D;
+    std::vector<double> * Xtr = 0;
+    arma::rowvec * ytX = 0;
+    std::map<std::size_t, arma::rowvec> * D = 0;
     std::size_t Iter = 0; // Current iteration number in the grid
     std::size_t ScreenSize = 1000;
-    arma::vec * r;
-    T * Xy; // used for classification.
+    arma::vec * r = 0;
+    T * Xy = 0; // used for classification.
     std::size_t NoSelectK = 0;
     bool intercept = false;
     bool withBounds = false;
-    arma::vec Lows;
-    arma::vec Highs;
-
+    arma::vec Lows = arma::zeros(1);
+    arma::vec Highs = arma::zeros(1);
 };
 
 #endif

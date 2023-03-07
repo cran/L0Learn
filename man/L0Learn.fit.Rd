@@ -119,34 +119,34 @@ penalty function (which can be a combination of the L0, L1, and L2 norms).
 }
 \examples{
 # Generate synthetic data for this example
-data <- GenSynthetic(n=500,p=1000,k=10,seed=1)
+data <- GenSynthetic(n=100,p=20,k=10,seed=1)
 X = data$X
 y = data$y
 
-# Fit an L0 regression model with a maximum of 50 non-zeros using coordinate descent (CD)
-fit1 <- L0Learn.fit(X, y, penalty="L0", maxSuppSize=50)
+# Fit an L0 regression model with a maximum of 20 non-zeros using coordinate descent (CD)
+fit1 <- L0Learn.fit(X, y, penalty="L0", maxSuppSize=20)
 print(fit1)
-# Extract the coefficients at lambda = 0.0325142
-coef(fit1, lambda=0.0325142)
+# Extract the coefficients at lambda = 2.28552e-02
+coef(fit1, lambda=2.28552e-02)
 # Apply the fitted model on X to predict the response
-predict(fit1, newx = X, lambda=0.0325142)
+predict(fit1, newx = X, lambda=2.28552e-02)
 
-# Fit an L0 regression model with a maximum of 50 non-zeros using CD and local search
-fit2 <- L0Learn.fit(X, y, penalty="L0", algorithm="CDPSI", maxSuppSize=50)
+# Fit an L0 regression model with a maximum of 20 non-zeros using CD and local search
+fit2 <- L0Learn.fit(X, y, penalty="L0", algorithm="CDPSI", maxSuppSize=20)
 print(fit2)
 
-# Fit an L0L2 regression model with 10 values of Gamma ranging from 0.0001 to 10, using CD
-fit3 <- L0Learn.fit(X, y, penalty="L0L2", maxSuppSize=50, nGamma=10, gammaMin=0.0001, gammaMax = 10)
+# Fit an L0L2 regression model with 3 values of Gamma ranging from 0.0001 to 10, using CD
+fit3 <- L0Learn.fit(X, y, penalty="L0L2", maxSuppSize=20, nGamma=3, gammaMin=0.0001, gammaMax = 10)
 print(fit3)
-# Extract the coefficients at lambda = 0.0361829 and gamma = 0.0001
-coef(fit3, lambda=0.0361829, gamma=0.0001)
+# Extract the coefficients at lambda = 2.45513e-02 and gamma = 0.0001
+coef(fit3, lambda=2.45513e-02, gamma=0.0001)
 # Apply the fitted model on X to predict the response
-predict(fit3, newx = X, lambda=0.0361829, gamma=0.0001)
+predict(fit3, newx = X, lambda=2.45513e-02, gamma=0.0001)
 
 # Fit an L0 logistic regression model
 # First, convert the response to binary
 y = sign(y)
-fit4 <- L0Learn.fit(X, y, loss="Logistic", maxSuppSize=20)
+fit4 <- L0Learn.fit(X, y, loss="Logistic", maxSuppSize=10)
 print(fit4)
 
 }

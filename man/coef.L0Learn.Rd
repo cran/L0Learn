@@ -18,25 +18,26 @@
 
 \item{...}{ignore}
 }
+\value{
+A sparse Matrix of class \code{dgCMatrix}, which contains the model
+coefficients. If both lambda and gamma are not supplied, then a matrix of 
+coefficients for all the solutions in the regularization path is returned. 
+If lambda is supplied but gamma is not, the smallest value of gamma is used.
+}
 \description{
 Extracts a specific solution in the regularization path.
 }
-\details{
-If both lambda and gamma are not supplied, then a matrix of coefficients
-for all the solutions in the regularization path is returned. If lambda is
-supplied but gamma is not, the smallest value of gamma is used.
-}
 \examples{
 # Generate synthetic data for this example
-data <- GenSynthetic(n=500,p=1000,k=10,seed=1)
+data <- GenSynthetic(n=100,p=20,k=10,seed=1)
 X = data$X
 y = data$y
 
-# Fit an L0L2 Model with 10 values of Gamma ranging from 0.0001 to 10, using coordinate descent
-fit <- L0Learn.fit(X, y, penalty="L0L2", maxSuppSize=50, nGamma=10, gammaMin=0.0001, gammaMax = 10)
+# Fit an L0L2 Model with 3 values of Gamma ranging from 0.0001 to 10, using coordinate descent
+fit <- L0Learn.fit(X, y, penalty="L0L2", nGamma=3, gammaMin=0.0001, gammaMax = 10)
 print(fit)
-# Extract the coefficients of the solution at lambda = 0.0361829 and gamma = 0.0001
-coef(fit, lambda=0.0361829, gamma=0.0001)
+# Extract the coefficients of the solution at lambda = 2.45513e-02 and gamma = 0.0001
+coef(fit, lambda=2.45513e-02, gamma=0.0001)
 # Extract the coefficients of all the solutions in the path
 coef(fit)
 

@@ -3,13 +3,43 @@ All changes to L0Learn will be documented here, starting from v1.1.0 onwards.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+
+## [2.1.0] - 2023-03-04
+### Added
+- More detailed documentation.
+
+## [2.0.9] - 2023-02-24
+### Fixed
+- Update install config script.
+- Compiler warnings.
+
+## [2.0.8] - 2023-02-22
+### Fixed
+- Remove C++11 requirement.
+
+## [2.0.7] - 2023-02-20
+### Fixed
+- Use smaller examples in the documentation.
+
+## [2.0.6] - 2023-02-20
+### Fixed
+- Compiler warnings.
+
+## [2.0.5] - 2022-02-13
+### Fixed
+- More accurate objective computation in CDPSI for logistic regression. Thanks to Jiachang Liu for the fix.
+
+## [2.0.4] - 2021-05-30
+### Added
+- More detailed description of sparse matrix support in the Vignette.
+
 ## [2.0.3] - 2021-03-28
 ### Fixed
-- UBSAN warning
+- UBSAN warning.
 
 ## [2.0.2] - 2021-03-18
 ### Fixed
-- Compilation warnings (-Wreorder and -Wunused-lambda-capture)
+- Compilation warnings (-Wreorder and -Wunused-lambda-capture).
 
 ## [2.0.1] - 2021-03-17
 ### Fixed

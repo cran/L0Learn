@@ -3,6 +3,7 @@
 #' @description Prints a summary of L0Learn.fit
 #' @param x The output of L0Learn.fit or L0Learn.cvfit
 #' @param ... ignore
+#' @return Prints a summary of the models to the console.
 #' @method print L0Learn
 #' @export
 print.L0Learn <- function(x, ...)

@@ -101,8 +101,20 @@ coef(fit, lambda=8.69435, gamma=1e-7)
 predict(fit, newx=X, lambda=8.69435, gamma=1e-7)
 
 ## -----------------------------------------------------------------------------
-X_sparse <- as(X, "dgCMatrix")
-fit_sparse <- L0Learn.fit(X_sparse, y, penalty="L0")
+
+# As an example, we generate a random, sparse matrix with 
+# 500 samples, 1000 features, and 10% nonzero entries.
+X_sparse <- Matrix::rsparsematrix(nrow=500, ncol=1000, density=0.1, rand.x = rnorm)
+# Below we generate the response using the same linear model as before,
+# but with the sparse data matrix X_sparse.
+y_sparseX <- as.vector(X_sparse%*%B + e)
+
+# Call L0Learn.
+fit_sparse <- L0Learn.fit(X_sparse, y_sparseX, penalty="L0")
+
+# Note: In the setup above, X_sparse is of type dgCMatrix.
+# If your sparse matrix is of a different type, convert it 
+# to dgCMatrix before calling L0Learn, e.g., using: X_sparse <- as(X_sparse, "dgCMatrix").
 
 ## -----------------------------------------------------------------------------
 fit <- L0Learn.fit(X, y, penalty="L0", maxSuppSize=10, excludeFirstK=3)

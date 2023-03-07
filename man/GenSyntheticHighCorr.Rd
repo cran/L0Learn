@@ -2,7 +2,7 @@
 % Please edit documentation in R/genhighcorr.R
 \name{GenSyntheticHighCorr}
 \alias{GenSyntheticHighCorr}
-\title{Generate Expoententiall Correlated Synthetic Data}
+\title{Generate Exponential Correlated Synthetic Data}
 \usage{
 GenSyntheticHighCorr(
   n,
@@ -11,7 +11,7 @@ GenSyntheticHighCorr(
   seed,
   rho = 0,
   b0 = 0,
-  noise_ratio = 1,
+  snr = 1,
   mu = 0,
   base_cor = 0.9
 )
@@ -29,7 +29,8 @@ GenSyntheticHighCorr(
 
 \item{b0}{intercept value to scale y by.}
 
-\item{noise_ratio}{The multiplier of noise to apply when calculating e. e[i] = noise_ratio*N(0, 1).}
+\item{snr}{desired Signal-to-Noise ratio. This sets the magnitude of the error term 'e'. 
+SNR is defined as  SNR = Var(XB)/Var(e)}
 
 \item{mu}{The mean for drawing from the Multivariate Normal Distribution. A scalar of vector of length p.}
 
@@ -47,9 +48,4 @@ A list containing:
 Generates a synthetic dataset as follows: 1) Generate a correlation matrix, SIG,  where item [i, j] = A^|i-j|.
 2) Draw from a Multivariate Normal Distribution using (mu and SIG) to generate X. 3) Generate a vector B with every ~p/k entry set to 1 and the rest are zeros.
 4) Sample every element in the noise vector e from N(0,1). 4) Set y = XB + b0 + e.
-}
-\examples{
-data <- GenSyntheticHighCorr(n=500,p=1000,k=10,seed=1)
-X = data$X
-y = data$y
 }

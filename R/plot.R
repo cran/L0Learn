@@ -5,14 +5,14 @@
 #' @param x The output of L0Learn.fit
 #' @param showLines If TRUE, the lines connecting the points in the plot are shown.
 #' @param ... ignore
-#'
+#' @return A \code{ggplot} object.
 #' @examples
 #' # Generate synthetic data for this example
-#' data <- GenSynthetic(n=500,p=1000,k=10,seed=1)
+#' data <- GenSynthetic(n=100,p=20,k=10,seed=1)
 #' X = data$X
 #' y = data$y
-#' # Fit an L0 Model with a maximum of 50 non-zeros
-#' fit <- L0Learn.fit(X, y, penalty="L0", maxSuppSize=50)
+#' # Fit an L0 Model
+#' fit <- L0Learn.fit(X, y, penalty="L0")
 #' plot(fit, gamma=0)
 #'
 #' @import ggplot2
@@ -60,16 +60,17 @@ plot.L0Learn <- function(x, gamma=0, showLines=FALSE, ...)
 #' @description Plots cross-validation errors for a given gamma.
 #' @param x The output of L0Learn.cvfit
 #' @inheritParams plot.L0Learn
+#' @return A \code{ggplot} object.
 #' @examples
 #' # Generate synthetic data for this example
-#' data <- GenSynthetic(n=500,p=1000,k=10,seed=1)
+#' data <- GenSynthetic(n=100,p=20,k=10,seed=1)
 #' X = data$X
 #' y = data$y
 #'
-#' # Perform 5-fold cross-validation on an L0L2 Model with 5 values of
+#' # Perform 3-fold cross-validation on an L0L2 Model with 3 values of
 #' # Gamma ranging from 0.0001 to 10
-#' fit <- L0Learn.cvfit(X, y, nFolds=5, seed=1, penalty="L0L2",
-#' maxSuppSize=20, nGamma=5, gammaMin=0.0001, gammaMax = 10)
+#' fit <- L0Learn.cvfit(X, y, nFolds=3, seed=1, penalty="L0L2",
+#' maxSuppSize=20, nGamma=3, gammaMin=0.0001, gammaMax = 10)
 #' # Plot the graph of cross-validation error versus lambda for gamma = 0.0001
 #' plot(fit, gamma=0.0001)
 #'
